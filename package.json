@@ -1,0 +1,27 @@
+{
+  "name": "homedir-polyfill",
+  "description": "Node.js os.homedir polyfill for node versions 0.10 and before.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/doowb/homedir-polyfill",
+  "author": "Brian Woodward (https://github.com/doowb)",
+  "repository": "doowb/homedir-polyfill",
+  "bugs": {
+    "url": "https://github.com/doowb/homedir-polyfill/issues"
+  },
+  "license": "Released under the MIT license.",
+  "files": [
+    "index.js",
+    "LICENSE"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "homedir",
+    "polyfill"
+  ]
+}
