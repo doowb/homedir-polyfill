@@ -30,6 +30,10 @@ In modern versions of node.js, [os.homedir](https://nodejs.org/api/os.html#os_os
 
 ## About
 
+### Related projects
+
+[parse-passwd](https://www.npmjs.com/package/parse-passwd): Parse a passwd file into a list of users. | [homepage](https://github.com/doowb/parse-passwd "Parse a passwd file into a list of users.")
+
 ### Contributing
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
