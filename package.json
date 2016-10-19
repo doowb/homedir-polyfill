@@ -1,7 +1,7 @@
 {
   "name": "homedir-polyfill",
   "description": "Node.js os.homedir polyfill for node versions 0.10 and before.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/doowb/homedir-polyfill",
   "author": "Brian Woodward (https://github.com/doowb)",
   "repository": "doowb/homedir-polyfill",
@@ -25,8 +25,13 @@
     "mocha": "^3.1.2"
   },
   "keywords": [
+    "home",
     "homedir",
-    "polyfill"
+    "homedirectory",
+    "os",
+    "os-homedir",
+    "polyfill",
+    "userhome"
   ],
   "verb": {
     "toc": false,
@@ -41,7 +46,9 @@
       "reflinks": true
     },
     "related": {
-      "list": []
+      "list": [
+        "parse-passwd"
+      ]
     },
     "reflinks": [
       "verb",
