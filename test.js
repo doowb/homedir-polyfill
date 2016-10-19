@@ -7,7 +7,6 @@ var parse = require('parse-passwd');
 var homedir = require('./');
 
 var user = process.env.LOGNAME || process.env.USER || process.env.LNAME || process.env.USERNAME;
-var uid = process.geteuid();
 
 describe('homedir-polyfill', function() {
   it('should export a function', function() {
@@ -58,6 +57,8 @@ describe('homedir-polyfill', function() {
 
   if (process.platform === 'linux') {
     it('should lookup the user\'s path from `/etc/passwd` if HOME is not set', function() {
+      var uid = typeof process.geteuid === 'function' ? process.geteuid() : process.getuid();
+
       delete process.env.HOME;
       var users = parse(fs.readFileSync('/etc/passwd', 'utf8'));
       var home;
