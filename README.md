@@ -1,6 +1,6 @@
 # homedir-polyfill [![NPM version](https://img.shields.io/npm/v/homedir-polyfill.svg?style=flat)](https://www.npmjs.com/package/homedir-polyfill) [![NPM downloads](https://img.shields.io/npm/dm/homedir-polyfill.svg?style=flat)](https://npmjs.org/package/homedir-polyfill) [![Linux Build Status](https://img.shields.io/travis/doowb/homedir-polyfill.svg?style=flat&label=Travis)](https://travis-ci.org/doowb/homedir-polyfill) [![Windows Build Status](https://img.shields.io/appveyor/ci/doowb/homedir-polyfill.svg?style=flat&label=AppVeyor)](https://ci.appveyor.com/project/doowb/homedir-polyfill)
 
-> Node.js os.homedir polyfill for node versions 0.10 and before.
+> Node.js os.homedir polyfill for older versions of node.js.
 
 ## Install
 
