@@ -21,20 +21,14 @@ describe('homedir-polyfill', function() {
 
   if (process.platform === 'win32') {
     it('should use USERPROFILE', function() {
-      if (!process.env.USERPROFILE) {
-        process.env.USERPROFILE = 'C:\\Users\\doowb';
-      }
+      process.env.USERPROFILE = 'C:\\Users\\doowb';
       assert.equal(homedir(), 'C:\\Users\\doowb');
     });
 
     it('should fallback to HOMEDRIVE and HOMEPATH when USERPROFILE is not set', function() {
       delete process.env.USERPROFILE;
-      if (!process.env.HOMEDRIVE) {
-        process.env.HOMEDRIVE = 'C:';
-      }
-      if (!process.env.HOMEPATH) {
-        process.env.HOMEPATH = '\\Users\\doowb';
-      }
+      process.env.HOMEDRIVE = 'C:';
+      process.env.HOMEPATH = '\\Users\\doowb';
       assert.equal(homedir(), 'C:\\Users\\doowb');
     });
 
