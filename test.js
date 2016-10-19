@@ -1,7 +1,13 @@
 'use strict';
 
+/**
+ * These tests are version to ensure that the correct methods are run for different platforms
+ * and different node versions.
+ */
+
 require('mocha');
 var fs = require('fs');
+var os = require('os');
 var assert = require('assert');
 var parse = require('parse-passwd');
 var homedir = require('./');
@@ -11,25 +17,31 @@ var user = process.env.LOGNAME || process.env.USER || process.env.LNAME || proce
 describe('homedir-polyfill', function() {
   it('should export a function', function() {
     assert.equal(typeof homedir, 'function');
+    if (typeof os.homedir === 'function') {
+      assert.equal(homedir, os.homedir);
+    }
   });
 
   it('should return the HOME path', function() {
     if (process.env.HOME) {
-      assert.equal(homedir(), process.env.HOME);
+      var expected = typeof os.homedir === 'function' ? os.homedir() : process.env.HOME;
+      assert.equal(homedir(), expected);
     }
   });
 
   if (process.platform === 'win32') {
     it('should use USERPROFILE', function() {
       process.env.USERPROFILE = 'C:\\Users\\doowb';
-      assert.equal(homedir(), 'C:\\Users\\doowb');
+      var expected = typeof os.homedir === 'function' ? os.homedir() : process.env.USERPROFILE;
+      assert.equal(homedir(), expected);
     });
 
     it('should fallback to HOMEDRIVE and HOMEPATH when USERPROFILE is not set', function() {
       delete process.env.USERPROFILE;
       process.env.HOMEDRIVE = 'C:';
       process.env.HOMEPATH = '\\Users\\doowb';
-      assert.equal(homedir(), 'C:\\Users\\doowb');
+      var expected = typeof os.homedir === 'function' ? os.homedir() : process.env.HOMEDRIVE + process.env.HOMEPATH;
+      assert.equal(homedir(), expected);
     });
 
     it('should fallback to HOME when HOMEDRIVE, HOMEPATH and USERPROFILE are not set', function() {
@@ -38,14 +50,17 @@ describe('homedir-polyfill', function() {
       delete process.env.HOMEPATH;
 
       process.env.HOME = 'C:\\Users\\doowb';
-      assert.equal(homedir(), 'C:\\Users\\doowb');
+
+      var expected = typeof os.homedir === 'function' ? os.homedir() : process.env.HOME;
+      assert.equal(homedir(), expected);
     });
   }
 
   if (process.platform === 'darwin') {
     it('should use "/Users/" + username if HOME is not set', function() {
       delete process.env.HOME;
-      assert.equal(homedir(), '/Users/' + user);
+      var expected = typeof os.homedir === 'function' ? os.homedir() : '/Users/' + user;
+      assert.equal(homedir(), expected);
     });
   }
 
@@ -63,7 +78,8 @@ describe('homedir-polyfill', function() {
         }
       }
 
-      assert.equal(homedir(), home || '/home/' + user);
+      var expected = typeof os.homedir === 'function' ? os.homedir() : (home || '/home/' + user);
+      assert.equal(homedir(), expected);
     });
   }
 });
