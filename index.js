@@ -34,9 +34,8 @@ function homedir() {
   }
 
   // on linux platforms (including OSX) find the current user and get their homedir from the /etc/passwd file
-  var uid = process.geteuid();
   var passwd = tryReadFileSync('/etc/passwd');
-  var home = find(parse(passwd), uid);
+  var home = find(parse(passwd), getuid());
   if (home) {
     return home;
   }
@@ -62,6 +61,13 @@ function find(arr, uid) {
       return arr[i].homedir;
     }
   }
+}
+
+function getuid() {
+  if (typeof process.geteuid === 'function') {
+    return process.geteuid();
+  }
+  return process.getuid();
 }
 
 function tryReadFileSync(fp) {
