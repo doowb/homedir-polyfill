@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
 var os = require('os');
-if (os.homedir !== undefined) {
-  module.exports = os.homedir
+if (typeof os.homedir !== 'undefined') {
+  module.exports = os.homedir;
 } else {
-  module.exports = require('./polyfill.js')
+  module.exports = require('./polyfill.js');
 }
 
