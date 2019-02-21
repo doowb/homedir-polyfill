@@ -11,6 +11,7 @@
   "license": "MIT",
   "files": [
     "index.js",
+    "polyfill.js",
     "LICENSE"
   ],
   "main": "index.js",
